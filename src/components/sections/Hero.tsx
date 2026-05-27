@@ -21,8 +21,8 @@ export function Hero() {
     <section
       id="hero"
       style={{
-        paddingTop: 16,
-        paddingBottom: 64,
+        paddingTop: 0,
+        paddingBottom: 96,
         minHeight: "calc(100svh - 56px)",
         display: "flex",
         alignItems: "center",
