@@ -51,7 +51,7 @@ export function Footer() {
           </nav>
 
           <p style={{ fontSize: 12, color: "var(--ink-subtle)" }}>
-            ® 2026 @investwithgreg
+            © 2026 @investwithgreg. All rights reserved.
           </p>
         </div>
 

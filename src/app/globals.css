@@ -644,40 +644,64 @@ section[id] {
   }
 }
 
-/* Uniform card sizing — same height across photos and videos.
-   Height set tall enough to fit full TikTok content without cropping. */
+/* Uniform 9:16 portrait cards. Click opens the post on TikTok. */
 .tiktok-card {
   flex-shrink: 0;
-  width: 325px;
-  height: 740px;
-  border-radius: 12px;
+  width: 270px;
+  aspect-ratio: 9 / 16;
+  border-radius: 14px;
   overflow: hidden;
   background: var(--bg-card);
   border: 1px solid var(--border);
   position: relative;
   display: block;
+  text-decoration: none;
+  transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
-.tiktok-card .tiktok-embed {
-  border-radius: 12px;
-  margin: 0 !important;
-  height: 100% !important;
+.tiktok-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
 
-/* Iframe sized to fill the card, fully interactive so click triggers TikTok's
-   native play behavior (videos don't auto-play; they require a click). */
-.tiktok-card iframe {
-  border-radius: 12px;
-  width: 100% !important;
-  height: 100% !important;
-  min-height: 100% !important;
-  max-height: 100% !important;
+.tiktok-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-.tiktok-card section {
-  height: 100% !important;
-  margin: 0 !important;
+.tiktok-thumb-fallback {
+  background: linear-gradient(135deg, #25f4ee 0%, #000 50%, #fe2c55 100%);
+}
+
+.tiktok-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.35) 100%);
+  pointer-events: none;
+  opacity: 0.95;
+  transition: opacity 200ms ease;
+}
+
+.tiktok-card:hover .tiktok-overlay {
+  opacity: 1;
+}
+
+.tiktok-play {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  padding-left: 4px;
 }
 
 .tiktok-placeholder {

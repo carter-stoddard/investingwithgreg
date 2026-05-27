@@ -15,8 +15,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Greg, Just a Regular Guy Who Knows What to Invest In",
-    template: "%s | Greg",
+    default: "Invest with Greg",
+    template: "%s | Invest with Greg",
   },
   description:
     "20 years old. Six figures invested. Two years in. Book a 1-on-1 call with Greg for real stock picks, real strategy, no jargon.",
@@ -34,14 +34,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: "Greg, Just a Regular Guy Who Knows What to Invest In",
+    title: "Invest with Greg",
     description:
       "20 years old. Six figures invested. Two years in. Book a 1-on-1 call with Greg.",
-    siteName: "Greg",
+    siteName: "Invest with Greg",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Greg, Just a Regular Guy Who Knows What to Invest In",
+    title: "Invest with Greg",
     description: "20 years old. Six figures invested. Two years in.",
   },
   robots: {

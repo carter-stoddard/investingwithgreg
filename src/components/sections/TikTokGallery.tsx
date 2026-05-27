@@ -1,9 +1,6 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { TikTokGalleryClient, type TikTokCard } from "./TikTokGalleryClient";
 
-// Add new posts here (full TikTok URLs — videos or photos).
 const POSTS = [
   "https://www.tiktok.com/@investwithgreg/photo/7643983342613875982",
   "https://www.tiktok.com/@investwithgreg/video/7637631019893394701",
@@ -13,98 +10,35 @@ const POSTS = [
   "https://www.tiktok.com/@investwithgreg/video/7611306234603375885",
 ];
 
-// Match both /video/{id} and /photo/{id}
-function extractId(url: string): string | null {
-  const match = url.match(/\/(video|photo)\/(\d+)/);
-  return match ? match[2] : null;
+async function fetchCard(url: string): Promise<TikTokCard> {
+  try {
+    const res = await fetch(
+      `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`,
+      { next: { revalidate: 3600 } },
+    );
+    if (!res.ok) return { url, thumbnail: null };
+    const data = (await res.json()) as { thumbnail_url?: string };
+    return { url, thumbnail: data.thumbnail_url ?? null };
+  } catch {
+    return { url, thumbnail: null };
+  }
 }
 
-const EMBED_SCRIPT_SRC = "https://www.tiktok.com/embed.js";
-const PROFILE_URL = "https://www.tiktok.com/@investwithgreg";
-
-export function TikTokGallery() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [loaded, setLoaded] = useState(false);
-
-  // Duplicate the posts so the auto-scroll loop seams together at translateX(-50%)
-  const trackPosts = [...POSTS, ...POSTS];
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setLoaded(true);
-      return;
-    }
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setLoaded(true);
-            observer.disconnect();
-          }
-        });
-      },
-      { rootMargin: "300px" },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!loaded) return;
-    const existing = document.querySelector(`script[src="${EMBED_SCRIPT_SRC}"]`);
-    if (existing) return;
-    const script = document.createElement("script");
-    script.src = EMBED_SCRIPT_SRC;
-    script.async = true;
-    document.body.appendChild(script);
-  }, [loaded]);
+export async function TikTokGallery() {
+  const cards = await Promise.all(POSTS.map(fetchCard));
 
   return (
-    <section ref={sectionRef} style={{ paddingBlock: 80 }}>
+    <section style={{ paddingBlock: 80 }}>
       <div className="container-edge">
-        <SectionHeader
-          title="Watch"
-          subtitle="Real posts. Real calls. No edits."
-        />
+        <SectionHeader title="Watch" subtitle="Real posts. Real calls. No edits." />
       </div>
 
-      {/* Carousel viewport — full bleed with edge fades */}
-      <div className="tiktok-gallery" style={{ marginBottom: 24 }}>
-        <div className="tiktok-track">
-          {trackPosts.map((url, i) => {
-            const id = extractId(url);
-            if (!id) return null;
-            const username = url.match(/@([^/]+)/)?.[1] ?? "investwithgreg";
-            return (
-              <div key={`${id}-${i}`} className="tiktok-card">
-                {loaded ? (
-                  <blockquote
-                    className="tiktok-embed"
-                    cite={url}
-                    data-video-id={id}
-                    style={{ maxWidth: 325, minWidth: 325 }}
-                  >
-                    <section>
-                      <a target="_blank" rel="noopener noreferrer" title={`@${username}`} href={url}>
-                        @{username}
-                      </a>
-                    </section>
-                  </blockquote>
-                ) : (
-                  <div className="tiktok-placeholder" aria-hidden>
-                    <div className="tiktok-placeholder-shimmer" />
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <TikTokGalleryClient cards={cards} />
 
-      {/* Follow button — sits directly beneath the carousel */}
-      <div className="container-edge" style={{ display: "flex", justifyContent: "center", marginTop: 8 }}>
+      <div
+        className="container-edge"
+        style={{ display: "flex", justifyContent: "center", marginTop: 8 }}
+      >
         <a
           href="https://www.tiktok.com/@investwithgreg"
           target="_blank"
