@@ -71,6 +71,17 @@ export async function POST(req: Request) {
   try {
     const resend = new Resend(apiKey);
     const tiktokUrl = `https://www.tiktok.com/@${encodeURIComponent(tiktokHandle)}`;
+    const submittedAt = new Date().toLocaleString("en-US", {
+      timeZone: "America/Los_Angeles",
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+      timeZoneName: "short",
+    });
     const html = `
 <!doctype html>
 <html>
@@ -120,7 +131,10 @@ export async function POST(req: Request) {
           </tr>
           <tr>
             <td style="padding:0 32px 24px 32px;border-top:1px solid #e8ece9;">
-              <div style="font-size:11px;color:#9aa8a0;padding-top:16px;">Sent from investwithgreg.com</div>
+              <div style="font-size:11px;color:#9aa8a0;padding-top:16px;line-height:1.6;">
+                Sent from investingwithgreg.com<br>
+                ${escapeHtml(submittedAt)}
+              </div>
             </td>
           </tr>
         </table>
