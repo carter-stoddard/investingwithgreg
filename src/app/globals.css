@@ -1,0 +1,707 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #ffffff;
+  --bg-elev: #ffffff;
+  --bg-ticker: #f5f5f5;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --border: rgba(17, 17, 17, 0.08);
+  --border-strong: rgba(17, 17, 17, 0.16);
+  --ink: #111111;
+  --ink-muted: #6b6b6b;
+  --ink-subtle: #9a9a9a;
+  --brand: #00c805;
+  --brand-hover: #00b005;
+  --brand-soft: rgba(0, 200, 5, 0.1);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 4px 8px rgba(0, 0, 0, 0.06), 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --bg: #000000;
+  --bg-elev: #0a0a0a;
+  --bg-ticker: #111111;
+  --bg-card: #1a1a1a;
+  --bg-input: #111111;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --ink: #f5f5f5;
+  --ink-muted: #9a9a9a;
+  --ink-subtle: #6b6b6b;
+  --brand: #00c805;
+  --brand-hover: #00e006;
+  --brand-soft: rgba(0, 200, 5, 0.12);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 4px 8px rgba(0, 0, 0, 0.5), 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+* {
+  border-color: var(--border);
+}
+
+/* Smoother theme transitions on common containers */
+section, header, footer, nav, article, aside, div, button, input, textarea, select, a {
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* But don't transition transform — animations need to be snappy */
+button, a {
+  transition-property: background-color, color, border-color, box-shadow, transform;
+}
+
+/* Selection */
+::selection {
+  background: var(--brand);
+  color: #ffffff;
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Utility: pill button base */
+.pill {
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pill:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.pill-primary {
+  background: var(--brand);
+  color: #ffffff;
+  border: 1px solid var(--brand);
+}
+
+.pill-primary:hover:not(:disabled) {
+  background: var(--brand-hover);
+  transform: scale(1.02);
+}
+
+.pill-secondary {
+  background: transparent;
+  color: var(--brand);
+  border: 1.5px solid var(--brand);
+  position: relative;
+  overflow: hidden;
+}
+
+.pill-secondary:hover:not(:disabled) {
+  background: var(--brand);
+  color: #ffffff;
+}
+
+/* Premium variant — dark fill, white text. Used for the top tier. */
+.pill-premium {
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid var(--ink);
+  position: relative;
+  overflow: hidden;
+}
+
+.pill-premium:hover:not(:disabled) {
+  background: var(--ink);
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* Subtle shimmer overlay for premium pill — sweeps across on hover */
+.pill-premium::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(0, 200, 5, 0.18) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.pill-premium:hover::after {
+  transform: translateX(100%);
+}
+
+.pill:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Form inputs */
+.input {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  background: var(--bg-input);
+  color: var(--ink);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  font-size: 16px; /* prevents iOS zoom on focus */
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--brand-soft);
+}
+
+.input::placeholder {
+  color: var(--ink-subtle);
+}
+
+textarea.input {
+  min-height: 120px;
+  padding-top: 14px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+select.input {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3e%3cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236b6b6b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+/* Section helpers */
+.container-edge {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 768px) {
+  .container-edge {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+/* Ticker mask edges */
+.ticker-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+}
+
+/* Prevent layout shift from scrollbar */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Ticker — left-to-right scroll (content appears from the left edge) */
+@keyframes ticker-scroll-ltr {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* Submission modal */
+.submission-shell {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.submission-sheet {
+  pointer-events: auto;
+  position: relative;
+  width: 100%;
+  background: var(--bg-card);
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.18);
+  max-height: 92svh;
+  overflow-y: auto;
+  padding: 10px 0 max(24px, env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 768px) {
+  .submission-shell {
+    align-items: center;
+  }
+  .submission-sheet {
+    max-width: 520px;
+    border-radius: 24px;
+    max-height: min(720px, 88vh);
+    padding-top: 16px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.24);
+  }
+}
+
+.submission-grab {
+  width: 40px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--border-strong);
+  margin: 0 auto 8px;
+}
+
+@media (min-width: 768px) {
+  .submission-grab {
+    display: none;
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Portfolio chart card — Robinhood style */
+.portfolio-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: var(--shadow-card);
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.portfolio-tabs {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  flex-wrap: wrap;
+}
+
+.portfolio-tabs .tab {
+  color: var(--ink-subtle);
+}
+
+.portfolio-tabs .tab-active {
+  color: var(--ink);
+}
+
+.portfolio-value {
+  font-size: clamp(32px, 8.5vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.portfolio-change {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  min-height: 22px;
+}
+
+.portfolio-change .up-arrow {
+  color: var(--brand);
+  font-size: 10px;
+  margin-right: 2px;
+}
+
+.portfolio-change .gain,
+.portfolio-change .gain-pct {
+  color: var(--brand);
+}
+
+.portfolio-change .period-label {
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+.portfolio-svg-wrap {
+  margin: 18px -8px 14px;
+  display: block;
+}
+
+.portfolio-period-selector {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.portfolio-period-selector button {
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-muted);
+  padding: 9px 4px;
+  border-radius: 999px;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.portfolio-period-selector button:hover:not(.active) {
+  color: var(--ink);
+  background: var(--bg-elev);
+}
+
+.portfolio-period-selector button:active {
+  transform: scale(0.96);
+}
+
+.portfolio-period-selector button.active {
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+
+.dark .portfolio-period-selector button.active {
+  background: rgba(0, 200, 5, 0.18);
+}
+
+/* Top navigation — sticky Robinhood-style tab bar */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.top-nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 56px;
+}
+
+.top-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 3.5vw, 22px);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
+}
+
+.top-nav-tabs::-webkit-scrollbar { display: none; }
+
+.top-nav-tabs a {
+  font-size: clamp(14px, 4vw, 16px);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--ink-subtle);
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 8px 2px;
+  transition: color 0.2s ease, font-weight 0.2s ease;
+}
+
+.top-nav-tabs a:hover {
+  color: var(--ink-muted);
+}
+
+.top-nav-tabs a.active {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.top-nav-toggle {
+  appearance: none;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--ink);
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.top-nav-toggle:hover {
+  transform: scale(1.05);
+}
+
+.top-nav-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Top-nav CTA — compact "Work With Greg" pill */
+.top-nav-cta.pill {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 640px) {
+  .top-nav-cta.pill {
+    padding: 9px 20px;
+    font-size: 14px;
+  }
+}
+
+/* Anchor offsets so sections don't hide behind the sticky nav */
+section[id] {
+  scroll-margin-top: 64px;
+}
+
+/* Proof list — Robinhood-style horizontal rows */
+.proof-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.proof-row {
+  display: grid;
+  grid-template-columns: 1fr 80px auto;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.proof-row:last-of-type {
+  border-bottom: none;
+}
+
+.proof-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.proof-ticker {
+  font-size: clamp(16px, 4.5vw, 18px);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.proof-subtitle {
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.proof-row-chart {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.proof-row-badge {
+  background: var(--brand);
+  color: #ffffff;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+  letter-spacing: -0.005em;
+  font-variant-numeric: tabular-nums;
+}
+
+.proof-disclaimer {
+  font-size: 12px;
+  color: var(--ink-subtle);
+  margin-top: 24px;
+  line-height: 1.5;
+  font-style: italic;
+  max-width: 560px;
+}
+
+/* Tighten on small screens */
+@media (max-width: 380px) {
+  .proof-row {
+    grid-template-columns: 1fr 60px auto;
+    gap: 12px;
+  }
+}
+
+/* Robinhood-style section headers — left-aligned title + chevron + subtitle */
+.section-header {
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.section-header-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: clamp(24px, 6vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--ink);
+}
+
+.section-header-chevron {
+  color: var(--ink-subtle);
+  flex-shrink: 0;
+  margin-left: 2px;
+}
+
+.section-header-subtitle {
+  margin: 8px 0 0;
+  font-size: clamp(13px, 3.6vw, 15px);
+  color: var(--ink-muted);
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 540px;
+}
+
+/* TikTok gallery — continuous auto-scrolling carousel (pauses on hover) */
+.tiktok-gallery {
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 0;
+  /* Edge fade so cards enter and exit cleanly */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.tiktok-track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: tiktok-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+@keyframes tiktok-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tiktok-track {
+    animation: none;
+  }
+}
+
+/* Uniform card sizing — same height across photos and videos.
+   Height set tall enough to fit full TikTok content without cropping. */
+.tiktok-card {
+  flex-shrink: 0;
+  width: 325px;
+  height: 740px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  position: relative;
+  display: block;
+}
+
+.tiktok-card .tiktok-embed {
+  border-radius: 12px;
+  margin: 0 !important;
+  height: 100% !important;
+}
+
+/* Iframe sized to fill the card, fully interactive so click triggers TikTok's
+   native play behavior (videos don't auto-play; they require a click). */
+.tiktok-card iframe {
+  border-radius: 12px;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: 100% !important;
+  display: block;
+}
+
+.tiktok-card section {
+  height: 100% !important;
+  margin: 0 !important;
+}
+
+.tiktok-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--bg-card);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tiktok-placeholder-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 25%,
+    var(--bg-elev) 50%,
+    transparent 75%
+  );
+  animation: tiktok-shimmer 1.6s infinite ease-in-out;
+}
+
+@keyframes tiktok-shimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(100%); }
+}
