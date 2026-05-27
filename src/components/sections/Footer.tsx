@@ -27,7 +27,6 @@ export function Footer() {
             }}
           >
             Greg
-            <span style={{ color: "var(--brand)" }}>.</span>
           </div>
 
           <nav

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useFormContext } from "@/components/FormContext";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 interface Call {
@@ -70,12 +71,13 @@ function SparkLine({ seed, trend }: { seed: number; trend: number }) {
 }
 
 export function StockCalls() {
+  const { scrollToForm } = useFormContext();
   return (
-    <section id="proof" style={{ paddingBlock: 80 }}>
+    <section id="proof" style={{ paddingBlock: 40 }}>
       <div className="container-edge">
         <SectionHeader
           title="Proof"
-          subtitle="These aren't predictions. They already happened."
+          subtitle="A live snapshot of Greg's portfolio — every position called publicly on TikTok, with real entries, real dates, and real returns."
         />
 
         <div className="proof-list">
@@ -103,6 +105,16 @@ export function StockCalls() {
         <p className="proof-disclaimer">
           Past performance is not indicative of future results. These are documented public calls, not guarantees.
         </p>
+
+        <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
+          <button
+            onClick={() => scrollToForm("60")}
+            className="pill pill-primary"
+            style={{ padding: "14px 28px", fontSize: 15 }}
+          >
+            Get in on the next call
+          </button>
+        </div>
       </div>
     </section>
   );

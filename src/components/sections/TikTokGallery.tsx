@@ -1,16 +1,25 @@
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { TikTokGalleryClient, type TikTokCard } from "./TikTokGalleryClient";
 
-const POSTS = [
-  "https://www.tiktok.com/@investwithgreg/photo/7643983342613875982",
-  "https://www.tiktok.com/@investwithgreg/video/7637631019893394701",
-  "https://www.tiktok.com/@investwithgreg/photo/7632112978405362957",
-  "https://www.tiktok.com/@investwithgreg/photo/7618487198928653582",
-  "https://www.tiktok.com/@investwithgreg/video/7613650045065317663",
-  "https://www.tiktok.com/@investwithgreg/video/7611306234603375885",
+type PostConfig = { url: string; thumbnailOverride?: string };
+
+const POSTS: PostConfig[] = [
+  {
+    url: "https://www.tiktok.com/@investwithgreg/photo/7643983342613875982",
+    thumbnailOverride: "/images/tiktok/7643983342613875982.jpg",
+  },
+  { url: "https://www.tiktok.com/@investwithgreg/video/7637631019893394701" },
+  {
+    url: "https://www.tiktok.com/@investwithgreg/photo/7632112978405362957",
+    thumbnailOverride: "/images/tiktok/7632112978405362957.jpg",
+  },
+  { url: "https://www.tiktok.com/@investwithgreg/video/7632061420850416926" },
+  { url: "https://www.tiktok.com/@investwithgreg/video/7613650045065317663" },
+  { url: "https://www.tiktok.com/@investwithgreg/video/7611306234603375885" },
 ];
 
-async function fetchCard(url: string): Promise<TikTokCard> {
+async function fetchCard({ url, thumbnailOverride }: PostConfig): Promise<TikTokCard> {
+  if (thumbnailOverride) return { url, thumbnail: thumbnailOverride };
   try {
     const res = await fetch(
       `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`,
@@ -28,7 +37,7 @@ export async function TikTokGallery() {
   const cards = await Promise.all(POSTS.map(fetchCard));
 
   return (
-    <section style={{ paddingBlock: 80 }}>
+    <section style={{ paddingBlock: 40 }}>
       <div className="container-edge">
         <SectionHeader title="Watch" subtitle="Real posts. Real calls. No edits." />
       </div>

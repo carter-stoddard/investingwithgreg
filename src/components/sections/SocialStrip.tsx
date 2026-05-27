@@ -6,7 +6,7 @@ const TIKTOK_URL = "https://www.tiktok.com/@investwithgreg";
 
 export function SocialStrip() {
   return (
-    <section style={{ paddingBlock: 64 }}>
+    <section style={{ paddingBlock: 32 }}>
       <div className="container-edge" style={{ display: "flex", justifyContent: "center" }}>
         <motion.a
           href={TIKTOK_URL}

@@ -3,6 +3,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "**.tiktokcdn.com" },
+      { protocol: "https", hostname: "**.tiktokcdn-us.com" },
+      { protocol: "https", hostname: "**.tiktokcdn-eu.com" },
+    ],
+  },
   async headers() {
     return [
       {

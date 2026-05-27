@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useFormContext } from "@/components/FormContext";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 
 const points = [
@@ -13,12 +14,13 @@ const points = [
 ];
 
 export function About() {
+  const { scrollToForm } = useFormContext();
   return (
-    <section id="why" style={{ paddingBlock: 80, background: "var(--bg-elev)" }}>
+    <section id="why" style={{ paddingBlock: 40, background: "var(--bg-elev)" }}>
       <div className="container-edge" style={{ maxWidth: 720 }}>
         <SectionHeader
           title="Why"
-          subtitle="No trust fund. No finance degree. Just two years of doing the work."
+          subtitle="Two years. Full-time job. Full-time college student. No handouts. Nothing special."
         />
 
         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 12 }}>
@@ -80,6 +82,16 @@ export function About() {
           If I figured this out at 20 with a normal job,{" "}
           <span style={{ color: "var(--brand)" }}>there&apos;s no reason you can&apos;t.</span>
         </motion.p>
+
+        <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
+          <button
+            onClick={() => scrollToForm("60")}
+            className="pill pill-primary"
+            style={{ padding: "14px 28px", fontSize: 15 }}
+          >
+            Start your run
+          </button>
+        </div>
       </div>
     </section>
   );

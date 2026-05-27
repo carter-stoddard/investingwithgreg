@@ -62,9 +62,12 @@ export function QualificationForm() {
       tier={submittedTier}
       name={submittedName}
     />
-    <section id="qualification-form" style={{ paddingBlock: 80 }}>
+    <section id="qualification-form" style={{ paddingBlock: 40 }}>
       <div className="container-edge" style={{ maxWidth: 640 }}>
-        <SectionHeader title="Apply" />
+        <SectionHeader
+          title="Apply"
+          subtitle="Everything is tailored to you. No copy-paste formula. No cookie-cutter playbook."
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}

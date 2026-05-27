@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { CountUp } from "@/components/ui/CountUp";
 import { PortfolioChart } from "@/components/ui/PortfolioChart";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useFormContext } from "@/components/FormContext";
 
 const stats = [
@@ -20,7 +21,7 @@ export function Hero() {
     <section
       id="hero"
       style={{
-        paddingTop: 40,
+        paddingTop: 16,
         paddingBottom: 64,
         minHeight: "calc(100svh - 56px)",
         display: "flex",
@@ -114,9 +115,15 @@ export function Hero() {
             <span style={{ color: "var(--brand)" }}>just two years.</span>
           </motion.h2>
 
-          {/* Portfolio chart — the proof. id="about" so the nav lands here. */}
+          <div id="about" style={{ scrollMarginTop: 64, marginTop: 8, marginBottom: 16 }}>
+            <SectionHeader
+              title="About"
+              subtitle="A quick look at who Greg is and how he got here."
+            />
+          </div>
+
+          {/* Portfolio chart — the proof. */}
           <motion.div
-            id="about"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}

@@ -673,6 +673,10 @@ section[id] {
 
 .tiktok-thumb-fallback {
   background: linear-gradient(135deg, #25f4ee 0%, #000 50%, #fe2c55 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .tiktok-overlay {

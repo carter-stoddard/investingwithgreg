@@ -65,7 +65,7 @@ export function Pricing() {
   const { scrollToForm } = useFormContext();
 
   return (
-    <section id="pricing" style={{ paddingBlock: 80, background: "var(--bg-elev)" }}>
+    <section id="pricing" style={{ paddingBlock: 40, background: "var(--bg-elev)" }}>
       <div className="container-edge">
         <SectionHeader
           title="Tiers"
