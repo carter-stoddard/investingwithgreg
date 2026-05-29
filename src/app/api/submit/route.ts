@@ -163,11 +163,22 @@ export async function POST(req: Request) {
 </html>
     `.trim();
 
+    const text = [
+      `Name: ${name}`,
+      `TikTok: @${tiktokHandle}`,
+      `TikTokURL: ${tiktokUrl}`,
+      `Phone: ${phone}`,
+      `Tier: ${tierLabel[tier]}`,
+      `Goals: ${goals.replace(/\r?\n/g, " ")}`,
+      `Submitted: ${submittedAt}`,
+    ].join("\n");
+
     const { error } = await resend.emails.send({
       from: fromEmail,
       to: toEmail,
       subject: `New lead from ${name} (${tierLabel[tier]})`,
       html,
+      text,
     });
 
     if (error) {
