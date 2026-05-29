@@ -61,6 +61,24 @@ export async function POST(req: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const fromEmail = process.env.RESEND_FROM_EMAIL;
   const toEmail = process.env.RESEND_TO_EMAIL;
+  const makeWebhookUrl = process.env.MAKE_WEBHOOK_URL;
+
+  if (makeWebhookUrl) {
+    fetch(makeWebhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        tiktok: tiktokHandle,
+        phone,
+        tier: tierLabel[tier],
+        goals,
+      }),
+    }).catch((err) => {
+      // eslint-disable-next-line no-console
+      console.error("[make webhook error]", err);
+    });
+  }
 
   if (!apiKey || apiKey.includes("placeholder") || !fromEmail || !toEmail) {
     // eslint-disable-next-line no-console
