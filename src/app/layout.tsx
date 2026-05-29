@@ -82,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
-      <GoogleAnalytics gaId="G-WJGP0KM3X7" />
+      <GoogleAnalytics gaId="G-4ECVVXBY5V" />
     </html>
   );
 }
