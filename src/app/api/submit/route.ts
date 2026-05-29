@@ -100,59 +100,70 @@ export async function POST(req: Request) {
       hour12: true,
       timeZoneName: "short",
     });
+    const nameParts = name.split(/\s+/).filter(Boolean);
+    const firstName = nameParts[0] || name;
+    const lastName = nameParts.slice(1).join(" ");
+    const labelStyle = "font-size:13px;font-weight:700;color:#5a6b60;display:block;margin-bottom:4px;";
+    const valueStyle = "font-size:16px;font-weight:600;color:#0a1f0f;display:block;";
+    const rowStyle = "padding:14px 0;border-bottom:1px solid #e8ece9;";
     const html = `
 <!doctype html>
 <html>
-<body style="margin:0;padding:0;background:#f5f7f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#0a1f0f;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f5f7f6;padding:32px 16px;">
+<body style="margin:0;padding:0;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#0a1f0f;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#ffffff;padding:32px 16px;">
     <tr>
       <td align="center">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background:#ffffff;border-radius:16px;box-shadow:0 1px 2px rgba(10,31,15,0.04),0 8px 24px rgba(10,31,15,0.06);overflow:hidden;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;">
           <tr>
-            <td style="height:4px;background:#00C805;line-height:4px;font-size:0;">&nbsp;</td>
-          </tr>
-          <tr>
-            <td style="padding:32px 32px 8px 32px;">
-              <div style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#00C805;margin-bottom:8px;">New Lead</div>
-              <div style="font-size:24px;font-weight:800;letter-spacing:-0.02em;line-height:1.2;color:#0a1f0f;">${escapeHtml(name)}</div>
-              <div style="font-size:14px;font-weight:500;color:#5a6b60;margin-top:6px;">${escapeHtml(tierLabel[tier])}</div>
+            <td style="padding-bottom:24px;border-bottom:2px solid #00C805;">
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#00C805;">New Lead</div>
             </td>
           </tr>
           <tr>
-            <td style="padding:24px 32px 8px 32px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e8ece9;">
-                <tr>
-                  <td style="padding:16px 0;border-bottom:1px solid #e8ece9;width:120px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#7a8a80;">TikTok</td>
-                  <td style="padding:16px 0;border-bottom:1px solid #e8ece9;font-size:15px;font-weight:600;text-align:right;">
-                    <a href="${tiktokUrl}" style="color:#00C805;text-decoration:none;font-weight:700;">@${escapeHtml(tiktokHandle)} &rarr;</a>
-                  </td>
-                </tr>
-                ${phone ? `
-                <tr>
-                  <td style="padding:16px 0;border-bottom:1px solid #e8ece9;width:120px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#7a8a80;">Phone</td>
-                  <td style="padding:16px 0;border-bottom:1px solid #e8ece9;font-size:15px;font-weight:600;text-align:right;color:#0a1f0f;">
-                    <a href="tel:${escapeHtml(phone)}" style="color:#0a1f0f;text-decoration:none;font-weight:600;">${escapeHtml(phone)}</a>
-                  </td>
-                </tr>` : ""}
-                <tr>
-                  <td style="padding:16px 0;width:120px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#7a8a80;">Tier</td>
-                  <td style="padding:16px 0;font-size:15px;font-weight:600;text-align:right;color:#0a1f0f;">${escapeHtml(tierLabel[tier])}</td>
-                </tr>
-              </table>
+            <td style="${rowStyle}">
+              <span style="${labelStyle}">First Name</span>
+              <span style="${valueStyle}">${escapeHtml(firstName)}</span>
             </td>
           </tr>
           <tr>
-            <td style="padding:16px 32px 32px 32px;">
-              <div style="font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#7a8a80;margin-bottom:10px;">Goals</div>
-              <div style="background:#f5f7f6;border-left:3px solid #00C805;padding:16px 18px;border-radius:8px;font-size:15px;line-height:1.6;color:#0a1f0f;white-space:pre-wrap;">${escapeHtml(goals)}</div>
+            <td style="${rowStyle}">
+              <span style="${labelStyle}">Last Name</span>
+              <span style="${valueStyle}">${escapeHtml(lastName) || "(not provided)"}</span>
             </td>
           </tr>
           <tr>
-            <td style="padding:0 32px 24px 32px;border-top:1px solid #e8ece9;">
-              <div style="font-size:11px;color:#9aa8a0;padding-top:16px;line-height:1.6;">
-                Sent from investingwithgreg.com<br>
-                ${escapeHtml(submittedAt)}
-              </div>
+            <td style="${rowStyle}">
+              <span style="${labelStyle}">TikTok</span>
+              <span style="${valueStyle}"><a href="${tiktokUrl}" style="color:#00C805;text-decoration:none;font-weight:700;">@${escapeHtml(tiktokHandle)}</a></span>
+            </td>
+          </tr>
+          <tr>
+            <td style="${rowStyle}">
+              <span style="${labelStyle}">Phone</span>
+              <span style="${valueStyle}">${phone ? `<a href="tel:${escapeHtml(phone)}" style="color:#0a1f0f;text-decoration:none;font-weight:600;">${escapeHtml(phone)}</a>` : "(not provided)"}</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="${rowStyle}">
+              <span style="${labelStyle}">Tier</span>
+              <span style="${valueStyle}">${escapeHtml(tierLabel[tier])}</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="${rowStyle}">
+              <span style="${labelStyle}">Goals</span>
+              <span style="${valueStyle};white-space:pre-wrap;line-height:1.5;">${escapeHtml(goals)}</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="${rowStyle}border-bottom:none;">
+              <span style="${labelStyle}">Submitted</span>
+              <span style="${valueStyle}">${escapeHtml(submittedAt)}</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding-top:24px;font-size:12px;color:#9aa8a0;">
+              Sent from investingwithgreg.com
             </td>
           </tr>
         </table>
@@ -164,7 +175,8 @@ export async function POST(req: Request) {
     `.trim();
 
     const text = [
-      `Name: ${name}`,
+      `First Name: ${firstName}`,
+      `Last Name: ${lastName}`,
       `TikTok: @${tiktokHandle}`,
       `TikTokURL: ${tiktokUrl}`,
       `Phone: ${phone}`,
