@@ -733,3 +733,16 @@ section[id] {
   from { transform: translateX(-100%); }
   to   { transform: translateX(100%); }
 }
+
+/* Legal page body styling */
+.legal-body p { margin: 0 0 12px; }
+.legal-body p:last-child { margin-bottom: 8px; }
+.legal-body ul { margin: 0 0 12px; padding-left: 18px; }
+.legal-body ul li { margin-bottom: 6px; }
+.legal-body ul li::marker { color: var(--brand); }
+.legal-body a { color: var(--brand); text-decoration: none; font-weight: 600; }
+.legal-body a:hover { text-decoration: underline; }
+.legal-body strong { color: var(--ink); font-weight: 700; }
+@media (max-width: 540px) {
+  .legal-body { padding-left: 0 !important; }
+}

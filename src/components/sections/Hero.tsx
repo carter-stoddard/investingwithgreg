@@ -21,7 +21,7 @@ export function Hero() {
     <section
       id="hero"
       style={{
-        paddingTop: 0,
+        paddingTop: 24,
         paddingBottom: 96,
         minHeight: "calc(100svh - 56px)",
         display: "flex",

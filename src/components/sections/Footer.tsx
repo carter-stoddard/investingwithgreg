@@ -38,14 +38,20 @@ export function Footer() {
               fontSize: 14,
             }}
           >
-            <a href="#" style={{ color: "var(--ink-muted)", textDecoration: "none" }}>
+            <a href="/" style={{ color: "var(--ink-muted)", textDecoration: "none" }}>
               Home
             </a>
-            <a href="#pricing" style={{ color: "var(--ink-muted)", textDecoration: "none" }}>
+            <a href="/#pricing" style={{ color: "var(--ink-muted)", textDecoration: "none" }}>
               Work With Greg
             </a>
-            <a href="#qualification-form" style={{ color: "var(--ink-muted)", textDecoration: "none" }}>
+            <a href="/#qualification-form" style={{ color: "var(--ink-muted)", textDecoration: "none" }}>
               Contact
+            </a>
+            <a href="/privacy" style={{ color: "var(--ink-muted)", textDecoration: "none" }}>
+              Privacy
+            </a>
+            <a href="/terms" style={{ color: "var(--ink-muted)", textDecoration: "none" }}>
+              Terms
             </a>
           </nav>
 
@@ -67,8 +73,8 @@ export function Footer() {
             fontStyle: "italic",
           }}
         >
-          Greg is not a licensed financial advisor, broker, or investment professional. All content on this website —
-          including stock mentions, portfolio performance, and any recommendations made during calls — is strictly for
+          Greg is not a licensed financial advisor, broker, or investment professional. All content on this website,
+          including stock mentions, portfolio performance, and any recommendations made during calls, is strictly for
           educational and informational purposes only. Nothing on this site constitutes financial advice, a solicitation,
           or an offer to buy or sell any security. Past performance is not indicative of future results. All investing
           involves risk, including the potential loss of principal. Always conduct your own research and consult with a
