@@ -22,6 +22,13 @@ export function QualificationForm() {
     setErrorMsg("");
 
     const formData = new FormData(e.currentTarget);
+
+    if (!formData.get("consent")) {
+      setState("error");
+      setErrorMsg("Please confirm the consent box before submitting.");
+      return;
+    }
+
     const payload = {
       name: String(formData.get("name") || ""),
       tiktokHandle: String(formData.get("tiktokHandle") || ""),
@@ -218,6 +225,39 @@ export function QualificationForm() {
                       {errorMsg}
                     </p>
                   )}
+
+                  <label
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: 10,
+                      padding: "12px 14px",
+                      background: "var(--bg-elev)",
+                      border: "1px solid var(--border)",
+                      borderRadius: 12,
+                      cursor: "pointer",
+                      fontSize: 13,
+                      lineHeight: 1.5,
+                      color: "var(--ink-muted)",
+                    }}
+                  >
+                    <input
+                      type="checkbox"
+                      name="consent"
+                      required
+                      style={{
+                        marginTop: 3,
+                        width: 16,
+                        height: 16,
+                        accentColor: "var(--brand)",
+                        flexShrink: 0,
+                        cursor: "pointer",
+                      }}
+                    />
+                    <span>
+                      I agree to let Greg store my info and contact me about my submission, future offers, and updates.
+                    </span>
+                  </label>
 
                   <button
                     type="submit"
