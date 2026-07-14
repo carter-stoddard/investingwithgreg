@@ -85,7 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           {children}
           <CookieConsent />
-          {process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "1" && <MaintenancePopup />}
+          <MaintenancePopup />
         </ThemeProvider>
       </body>
       <GoogleAnalytics gaId="G-4ECVVXBY5V" />
