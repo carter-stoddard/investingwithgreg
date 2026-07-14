@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { CookieConsent } from "@/components/CookieConsent";
+import { MaintenancePopup } from "@/components/MaintenancePopup";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider>
           {children}
           <CookieConsent />
+          {process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "1" && <MaintenancePopup />}
         </ThemeProvider>
       </body>
       <GoogleAnalytics gaId="G-4ECVVXBY5V" />
