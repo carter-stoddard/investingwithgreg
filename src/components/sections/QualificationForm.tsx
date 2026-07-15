@@ -123,7 +123,7 @@ export function QualificationForm() {
                 <h3 style={{ fontSize: 22, fontWeight: 700, letterSpacing: "-0.02em", marginBottom: 8 }}>
                   You&apos;re in.
                 </h3>
-                <p style={{ fontSize: 15, color: "var(--ink-muted)", maxWidth: 360, marginInline: "auto", lineHeight: 1.5 }}>
+                <p style={{ fontSize: 16, color: "var(--ink-muted)", maxWidth: 380, marginInline: "auto", lineHeight: 1.55 }}>
                   Greg will reach out within 24 hours.
                 </p>
               </motion.div>
@@ -214,11 +214,11 @@ export function QualificationForm() {
                     <p
                       role="alert"
                       style={{
-                        fontSize: 13,
-                        color: "#d00",
-                        background: "rgba(220, 0, 0, 0.06)",
-                        border: "1px solid rgba(220, 0, 0, 0.2)",
-                        padding: "10px 14px",
+                        fontSize: 14,
+                        color: "#b00020",
+                        background: "rgba(176, 0, 32, 0.06)",
+                        border: "1px solid rgba(176, 0, 32, 0.25)",
+                        padding: "12px 14px",
                         borderRadius: 10,
                       }}
                     >
@@ -236,8 +236,8 @@ export function QualificationForm() {
                       border: "1px solid var(--border)",
                       borderRadius: 12,
                       cursor: "pointer",
-                      fontSize: 13,
-                      lineHeight: 1.5,
+                      fontSize: 14,
+                      lineHeight: 1.55,
                       color: "var(--ink-muted)",
                     }}
                   >
@@ -263,7 +263,7 @@ export function QualificationForm() {
                     type="submit"
                     disabled={state === "submitting"}
                     className="pill pill-primary"
-                    style={{ padding: "16px 24px", fontSize: 15, width: "100%", marginTop: 4 }}
+                    style={{ padding: "18px 24px", fontSize: 16, width: "100%", marginTop: 4 }}
                   >
                     {state === "submitting" ? "Sending..." : "Submit"}
                   </button>
@@ -295,7 +295,7 @@ function Field({
 }) {
   return (
     <label style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      <span style={{ fontSize: 13, fontWeight: 600, letterSpacing: "-0.01em", display: "flex", alignItems: "center", gap: 6 }}>
+      <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: "-0.01em", display: "flex", alignItems: "center", gap: 6 }}>
         {label}
         {required && <span style={{ color: "var(--brand)" }} aria-hidden>*</span>}
         {hint && (

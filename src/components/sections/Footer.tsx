@@ -20,7 +20,7 @@ export function Footer() {
         >
           <div
             style={{
-              fontSize: 22,
+              fontSize: 26,
               fontWeight: 800,
               letterSpacing: "-0.02em",
               color: "var(--ink)",
@@ -33,9 +33,9 @@ export function Footer() {
             style={{
               display: "flex",
               flexWrap: "wrap",
-              gap: 20,
+              gap: 22,
               justifyContent: "center",
-              fontSize: 14,
+              fontSize: 15,
             }}
           >
             <a href="/" style={{ color: "var(--ink-muted)", textDecoration: "none" }}>
@@ -55,7 +55,7 @@ export function Footer() {
             </a>
           </nav>
 
-          <p style={{ fontSize: 12, color: "var(--ink-subtle)" }}>
+          <p style={{ fontSize: 13, color: "var(--ink-subtle)" }}>
             © 2026 @investwithgreg. All rights reserved.
           </p>
         </div>
@@ -65,9 +65,9 @@ export function Footer() {
             marginTop: 32,
             paddingTop: 24,
             borderTop: "1px solid var(--border)",
-            fontSize: 11,
-            color: "var(--ink-subtle)",
-            lineHeight: 1.6,
+            fontSize: 13,
+            color: "var(--ink-muted)",
+            lineHeight: 1.65,
             maxWidth: 880,
             marginInline: "auto",
             fontStyle: "italic",

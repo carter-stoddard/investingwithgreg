@@ -188,8 +188,8 @@ export function LegalPage({ eyebrow, title, intro, updated, sections }: LegalPag
                 </div>
                 <div
                   style={{
-                    fontSize: 15,
-                    lineHeight: 1.65,
+                    fontSize: 16,
+                    lineHeight: 1.7,
                     color: "var(--ink-muted)",
                     paddingLeft: 44,
                   }}

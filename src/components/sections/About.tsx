@@ -58,7 +58,7 @@ export function About() {
               >
                 {p.icon}
               </span>
-              <span style={{ fontSize: 15, lineHeight: 1.5, paddingTop: 6 }}>{p.text}</span>
+              <span style={{ fontSize: 16, lineHeight: 1.55, paddingTop: 6 }}>{p.text}</span>
             </motion.li>
           ))}
         </ul>
@@ -69,7 +69,7 @@ export function About() {
           viewport={{ once: true, margin: "0px 0px -10% 0px" }}
           transition={{ duration: 0.6, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           style={{
-            fontSize: "clamp(20px, 5vw, 26px)",
+            fontSize: "clamp(22px, 5.5vw, 28px)",
             fontWeight: 700,
             letterSpacing: "-0.02em",
             lineHeight: 1.25,
@@ -87,7 +87,7 @@ export function About() {
           <button
             onClick={() => scrollToForm("90")}
             className="pill pill-primary"
-            style={{ padding: "14px 28px", fontSize: 15 }}
+            style={{ padding: "16px 28px", fontSize: 16 }}
           >
             Start your run
           </button>

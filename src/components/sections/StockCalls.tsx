@@ -110,7 +110,7 @@ export function StockCalls() {
           <button
             onClick={() => scrollToForm("90")}
             className="pill pill-primary"
-            style={{ padding: "14px 28px", fontSize: 15 }}
+            style={{ padding: "16px 28px", fontSize: 16 }}
           >
             Get in on the next call
           </button>

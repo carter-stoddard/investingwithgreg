@@ -230,7 +230,7 @@ function TierCard({ tier, index, onSelect }: { tier: PricingTier; index: number;
       </h3>
 
       {/* Tagline */}
-      <p style={{ fontSize: 14, color: "var(--ink-muted)", lineHeight: 1.5, marginBottom: 20, fontWeight: 500 }}>
+      <p style={{ fontSize: 15, color: "var(--ink-muted)", lineHeight: 1.55, marginBottom: 20, fontWeight: 500 }}>
         {tier.tagline}
       </p>
 
@@ -246,9 +246,9 @@ function TierCard({ tier, index, onSelect }: { tier: PricingTier; index: number;
               display: "flex",
               alignItems: "flex-start",
               gap: 10,
-              fontSize: 14,
+              fontSize: 15,
               color: "var(--ink)",
-              lineHeight: 1.4,
+              lineHeight: 1.5,
             }}
           >
             <span
@@ -279,7 +279,7 @@ function TierCard({ tier, index, onSelect }: { tier: PricingTier; index: number;
       <button
         onClick={onSelect}
         className={`pill ${buttonClass}`}
-        style={{ padding: "14px 20px", fontSize: 15, width: "100%" }}
+        style={{ padding: "16px 20px", fontSize: 16, width: "100%" }}
       >
         {tier.cta}
       </button>

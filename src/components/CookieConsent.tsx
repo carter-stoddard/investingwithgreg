@@ -88,11 +88,11 @@ export function CookieConsent() {
                 <div
                   id="cookie-consent-title"
                   style={{
-                    fontSize: 14,
+                    fontSize: 16,
                     fontWeight: 800,
                     letterSpacing: "-0.01em",
                     color: "var(--ink)",
-                    marginBottom: 4,
+                    marginBottom: 6,
                   }}
                 >
                   Heads up about cookies.
@@ -100,9 +100,9 @@ export function CookieConsent() {
                 <p
                   id="cookie-consent-desc"
                   style={{
-                    fontSize: 13,
+                    fontSize: 14,
                     color: "var(--ink-muted)",
-                    lineHeight: 1.55,
+                    lineHeight: 1.6,
                     margin: 0,
                   }}
                 >
@@ -133,7 +133,7 @@ export function CookieConsent() {
                 type="button"
                 onClick={() => record("rejected")}
                 className="pill pill-secondary"
-                style={{ padding: "10px 18px", fontSize: 13 }}
+                style={{ padding: "12px 20px", fontSize: 14 }}
               >
                 Decline
               </button>
@@ -141,7 +141,7 @@ export function CookieConsent() {
                 type="button"
                 onClick={() => record("accepted")}
                 className="pill pill-primary"
-                style={{ padding: "10px 22px", fontSize: 13 }}
+                style={{ padding: "12px 24px", fontSize: 14 }}
               >
                 Accept
               </button>

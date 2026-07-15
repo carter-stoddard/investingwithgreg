@@ -84,7 +84,7 @@ export function Hero() {
             whileHover={{ y: -1 }}
             style={{
               display: "inline-block",
-              fontSize: 15,
+              fontSize: 17,
               color: "var(--brand)",
               fontWeight: 700,
               marginBottom: 28,
@@ -152,11 +152,11 @@ export function Hero() {
             />
             <p
               style={{
-                fontSize: "clamp(15px, 4vw, 17px)",
+                fontSize: "clamp(17px, 4.5vw, 19px)",
                 color: "var(--ink-muted)",
                 fontStyle: "italic",
                 lineHeight: 1.55,
-                maxWidth: 460,
+                maxWidth: 480,
                 marginInline: "auto",
               }}
             >
@@ -195,11 +195,11 @@ export function Hero() {
                   gap: 4,
                 }}
               >
-                <span style={{ fontSize: 12, color: "var(--ink-muted)", letterSpacing: "0.03em", fontWeight: 600, textTransform: "uppercase" }}>
+                <span style={{ fontSize: 13, color: "var(--ink-muted)", letterSpacing: "0.03em", fontWeight: 600, textTransform: "uppercase" }}>
                   <span style={{ marginRight: 6 }} aria-hidden>{s.icon}</span>
                   {s.label}
                 </span>
-                <span style={{ fontSize: 26, fontWeight: 800, letterSpacing: "-0.02em", color: "var(--brand)" }}>
+                <span style={{ fontSize: 30, fontWeight: 800, letterSpacing: "-0.02em", color: "var(--brand)" }}>
                   <CountUp to={s.value} prefix={s.prefix} suffix={s.suffix} />
                 </span>
               </div>
@@ -208,14 +208,14 @@ export function Hero() {
 
           <p
             style={{
-              fontSize: 12,
+              fontSize: 14,
               color: "var(--ink-muted)",
               textAlign: "center",
               marginTop: -20,
               marginBottom: 28,
-              maxWidth: 420,
+              maxWidth: 460,
               marginInline: "auto",
-              lineHeight: 1.5,
+              lineHeight: 1.55,
             }}
           >
             Greg&apos;s individual results. Investing involves risk. Your results will vary.
@@ -231,14 +231,14 @@ export function Hero() {
               onClick={() => scrollToForm("90")}
               className="pill pill-primary"
               style={{
-                padding: "16px 36px",
-                fontSize: 16,
-                width: "min(100%, 320px)",
+                padding: "18px 36px",
+                fontSize: 17,
+                width: "min(100%, 340px)",
               }}
             >
               Work With Greg
             </button>
-            <p style={{ fontSize: 12, color: "var(--ink-subtle)", marginTop: 14 }}>
+            <p style={{ fontSize: 14, color: "var(--ink-muted)", marginTop: 16 }}>
               No spam. No auto-billing. Greg reviews every request personally.
             </p>
           </motion.div>
