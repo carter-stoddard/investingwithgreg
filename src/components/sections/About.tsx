@@ -7,7 +7,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 const points = [
   { icon: "👟", text: "Started at 18 with a couple thousand dollars from birthday money and reselling sneakers" },
   { icon: "🎓", text: "Built this while working a 9-to-5 and in college full-time" },
-  { icon: "📈", text: "$145K+ invested in under 2 years" },
+  { icon: "📈", text: "$149K+ invested in under 2 years" },
   { icon: "✅", text: "10+ public stock calls (AMD, Google, Amazon, Micron), all paid off" },
   { icon: "🎯", text: "Portfolio up 74% year-to-date" },
   { icon: "🤝", text: "Shares everything openly on TikTok" },
@@ -85,7 +85,7 @@ export function About() {
 
         <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
           <button
-            onClick={() => scrollToForm("60")}
+            onClick={() => scrollToForm("90")}
             className="pill pill-primary"
             style={{ padding: "14px 28px", fontSize: 15 }}
           >

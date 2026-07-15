@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useCallback } from "react";
 
-export type Tier = "30" | "60" | "120";
+export type Tier = "60" | "90" | "150";
 
 interface FormContextValue {
   selectedTier: Tier;
@@ -13,7 +13,7 @@ interface FormContextValue {
 const FormContext = createContext<FormContextValue | undefined>(undefined);
 
 export function FormProvider({ children }: { children: React.ReactNode }) {
-  const [selectedTier, setSelectedTier] = useState<Tier>("60");
+  const [selectedTier, setSelectedTier] = useState<Tier>("90");
 
   const scrollToForm = useCallback((tier: Tier) => {
     setSelectedTier(tier);

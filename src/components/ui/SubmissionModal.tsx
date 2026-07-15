@@ -12,9 +12,9 @@ interface SubmissionModalProps {
 }
 
 const tierInfo: Record<Tier, { price: number; name: string; includes: string }> = {
-  "30": { price: 30, name: "Portfolio Drop", includes: "Greg's current portfolio" },
-  "60": { price: 60, name: "Insider Access", includes: "Portfolio + watchlist + 4 weeks Q&A" },
-  "120": { price: 120, name: "1:1 Deep Dive", includes: "Everything + 30-min call" },
+  "60": { price: 60, name: "Portfolio Drop", includes: "Greg's current portfolio" },
+  "90": { price: 90, name: "Insider Access", includes: "Portfolio + watchlist + 4 weeks Q&A" },
+  "150": { price: 150, name: "1:1 Deep Dive", includes: "Everything + 30-min call" },
 };
 
 export function SubmissionModal({ open, onClose, tier, name }: SubmissionModalProps) {

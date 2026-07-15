@@ -18,8 +18,8 @@ interface PricingTier {
 
 const tiers: PricingTier[] = [
   {
-    id: "30",
-    price: 30,
+    id: "60",
+    price: 60,
     name: "Portfolio Drop",
     tagline: "See exactly what Greg is holding right now.",
     features: [
@@ -30,8 +30,8 @@ const tiers: PricingTier[] = [
     cta: "Get Access",
   },
   {
-    id: "60",
-    price: 60,
+    id: "90",
+    price: 90,
     name: "Insider Access",
     tagline: "Everything in Portfolio Drop, plus a month of direct access.",
     features: [
@@ -45,8 +45,8 @@ const tiers: PricingTier[] = [
     badge: "Most Popular",
   },
   {
-    id: "120",
-    price: 120,
+    id: "150",
+    price: 150,
     name: "1:1 Deep Dive",
     tagline: "Everything in Insider Access, plus a personalized 30-min call.",
     features: [

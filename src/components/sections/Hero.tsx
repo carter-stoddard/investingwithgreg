@@ -8,10 +8,10 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useFormContext } from "@/components/FormContext";
 
 const stats = [
-  { icon: "💰", label: "Invested", value: 145, prefix: "$", suffix: "K+" },
-  { icon: "📈", label: "Return All-Time", value: 115, prefix: "+", suffix: "%" },
+  { icon: "💰", label: "Invested", value: 149, prefix: "$", suffix: "K+" },
+  { icon: "📈", label: "All-Time Return", value: 112, prefix: "+", suffix: "%" },
+  { icon: "📅", label: "YTD Return", value: 32, prefix: "+", suffix: "%" },
   { icon: "✅", label: "Stocks Called", value: 10, prefix: "", suffix: "+" },
-  { icon: "👥", label: "People Helped", value: 100, prefix: "", suffix: "+" },
 ];
 
 export function Hero() {
@@ -195,16 +195,31 @@ export function Hero() {
                   gap: 4,
                 }}
               >
-                <span style={{ fontSize: 11, color: "var(--ink-muted)", letterSpacing: "0.03em", fontWeight: 500, textTransform: "uppercase" }}>
-                  <span style={{ marginRight: 6 }}>{s.icon}</span>
+                <span style={{ fontSize: 12, color: "var(--ink-muted)", letterSpacing: "0.03em", fontWeight: 600, textTransform: "uppercase" }}>
+                  <span style={{ marginRight: 6 }} aria-hidden>{s.icon}</span>
                   {s.label}
                 </span>
-                <span style={{ fontSize: 24, fontWeight: 800, letterSpacing: "-0.02em", color: "var(--brand)" }}>
+                <span style={{ fontSize: 26, fontWeight: 800, letterSpacing: "-0.02em", color: "var(--brand)" }}>
                   <CountUp to={s.value} prefix={s.prefix} suffix={s.suffix} />
                 </span>
               </div>
             ))}
           </motion.div>
+
+          <p
+            style={{
+              fontSize: 12,
+              color: "var(--ink-muted)",
+              textAlign: "center",
+              marginTop: -20,
+              marginBottom: 28,
+              maxWidth: 420,
+              marginInline: "auto",
+              lineHeight: 1.5,
+            }}
+          >
+            Greg&apos;s individual results. Investing involves risk. Your results will vary.
+          </p>
 
           {/* CTA */}
           <motion.div
@@ -213,7 +228,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             <button
-              onClick={() => scrollToForm("60")}
+              onClick={() => scrollToForm("90")}
               className="pill pill-primary"
               style={{
                 padding: "16px 36px",

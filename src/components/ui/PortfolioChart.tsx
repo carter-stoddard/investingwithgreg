@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 type Period = "1D" | "1W" | "1M" | "3M" | "YTD" | "1Y" | "ALL";
 
-const PORTFOLIO_VALUE = 145742.16;
+const PORTFOLIO_VALUE = 149084.72;
 
 const periods: Period[] = ["1D", "1W", "1M", "3M", "YTD", "1Y", "ALL"];
 
@@ -19,13 +19,13 @@ interface PeriodData {
 }
 
 const periodData: Record<Period, PeriodData> = {
-  "1D":  { gain: 487.32,   gainPct: 0.34,   label: "Today",         seed: 7,  volatility: 0.10, trend: 0.08 },
-  "1W":  { gain: 3142.18,  gainPct: 2.20,   label: "Past Week",     seed: 17, volatility: 0.16, trend: 0.20 },
-  "1M":  { gain: 10218.45, gainPct: 7.54,   label: "Past Month",    seed: 29, volatility: 0.20, trend: 0.40 },
-  "3M":  { gain: 33486.91, gainPct: 29.80,  label: "Past 3 Months", seed: 41, volatility: 0.24, trend: 0.55 },
-  "YTD": { gain: 61982.30, gainPct: 74.00,  label: "YTD",           seed: 53, volatility: 0.28, trend: 0.74 },
-  "1Y":  { gain: 72400.55, gainPct: 98.55,  label: "Past Year",     seed: 67, volatility: 0.32, trend: 0.82 },
-  "ALL": { gain: 77955.12, gainPct: 115.00, label: "All-time",      seed: 79, volatility: 0.36, trend: 0.92 },
+  "1D":  { gain: -358.24,   gainPct: -0.24,   label: "Today",         seed: 7,  volatility: 0.14, trend: -0.10 },
+  "1W":  { gain: 2718.45,   gainPct: 1.86,    label: "Past Week",     seed: 17, volatility: 0.20, trend: 0.22 },
+  "1M":  { gain: -1274.16,  gainPct: -0.85,   label: "Past Month",    seed: 29, volatility: 0.24, trend: -0.14 },
+  "3M":  { gain: 18906.32,  gainPct: 14.51,   label: "Past 3 Months", seed: 41, volatility: 0.28, trend: 0.42 },
+  "YTD": { gain: 36288.47,  gainPct: 32.15,   label: "YTD",           seed: 53, volatility: 0.30, trend: 0.58 },
+  "1Y":  { gain: 54984.61,  gainPct: 58.44,   label: "Past Year",     seed: 67, volatility: 0.34, trend: 0.74 },
+  "ALL": { gain: 78901.28,  gainPct: 112.42,  label: "All-time",      seed: 79, volatility: 0.38, trend: 0.90 },
 };
 
 function seededRandom(seed: number) {
@@ -113,6 +113,8 @@ export function PortfolioChart() {
   const startValue = PORTFOLIO_VALUE - data.gain;
   const liveGain = liveValue - startValue;
   const liveGainPct = startValue > 0 ? (liveGain / startValue) * 100 : data.gainPct;
+  const isDown = liveGain < 0;
+  const changeColor = isDown ? "#e11d48" : "var(--brand)";
 
   const width = 360;
   const height = 140;
@@ -144,10 +146,17 @@ export function PortfolioChart() {
           exit={{ opacity: 0, y: -4 }}
           transition={{ duration: 0.2 }}
           className="portfolio-change"
+          style={{ color: changeColor }}
         >
-          <span className="up-arrow" aria-hidden>▲</span>
-          <span className="gain">${formatMoney(liveGain)}</span>
-          <span className="gain-pct">({liveGainPct.toFixed(2)}%)</span>
+          <span className="up-arrow" aria-hidden style={{ color: changeColor }}>
+            {isDown ? "▼" : "▲"}
+          </span>
+          <span className="gain" style={{ color: changeColor }}>
+            {isDown ? "-" : ""}${formatMoney(Math.abs(liveGain))}
+          </span>
+          <span className="gain-pct" style={{ color: changeColor }}>
+            ({liveGainPct.toFixed(2)}%)
+          </span>
           <span className="period-label">{data.label}</span>
         </motion.div>
       </AnimatePresence>
@@ -164,8 +173,8 @@ export function PortfolioChart() {
         >
           <defs>
             <linearGradient id={`fill-${gradId}`} x1="0" x2="0" y1="0" y2="1">
-              <stop offset="0%" stopColor="var(--brand)" stopOpacity="0.22" />
-              <stop offset="100%" stopColor="var(--brand)" stopOpacity="0" />
+              <stop offset="0%" stopColor={changeColor} stopOpacity="0.22" />
+              <stop offset="100%" stopColor={changeColor} stopOpacity="0" />
             </linearGradient>
           </defs>
 
@@ -196,7 +205,7 @@ export function PortfolioChart() {
             key={`line-${period}`}
             d={linePath}
             fill="none"
-            stroke="var(--brand)"
+            stroke={changeColor}
             strokeWidth="2.25"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -211,7 +220,7 @@ export function PortfolioChart() {
             cx={endPoint[0]}
             cy={endPoint[1]}
             r="9"
-            fill="var(--brand)"
+            fill={changeColor}
             opacity="0.18"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -222,7 +231,7 @@ export function PortfolioChart() {
             cx={endPoint[0]}
             cy={endPoint[1]}
             r="3.5"
-            fill="var(--brand)"
+            fill={changeColor}
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.55, duration: 0.3 }}

@@ -14,7 +14,7 @@ export function QualificationForm() {
   const [errorMsg, setErrorMsg] = useState<string>("");
   const [modalOpen, setModalOpen] = useState(false);
   const [submittedName, setSubmittedName] = useState("");
-  const [submittedTier, setSubmittedTier] = useState<Tier>("60");
+  const [submittedTier, setSubmittedTier] = useState<Tier>("90");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -194,9 +194,9 @@ export function QualificationForm() {
                       value={selectedTier}
                       onChange={(e) => setSelectedTier(e.target.value as Tier)}
                     >
-                      <option value="30">$30 Portfolio Drop</option>
-                      <option value="60">$60 Insider Access (Most Popular)</option>
-                      <option value="120">$120 1:1 Deep Dive</option>
+                      <option value="60">$60 Portfolio Drop</option>
+                      <option value="90">$90 Insider Access (Most Popular)</option>
+                      <option value="150">$150 1:1 Deep Dive</option>
                     </select>
                   </Field>
 

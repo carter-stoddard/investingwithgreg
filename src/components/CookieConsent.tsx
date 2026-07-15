@@ -95,7 +95,7 @@ export function CookieConsent() {
                     marginBottom: 4,
                   }}
                 >
-                  Cookies, but the good kind.
+                  Heads up about cookies.
                 </div>
                 <p
                   id="cookie-consent-desc"
@@ -106,8 +106,10 @@ export function CookieConsent() {
                     margin: 0,
                   }}
                 >
-                  We use cookies to measure traffic and understand what&apos;s working. No selling your
-                  data, ever.{" "}
+                  We run <strong style={{ color: "var(--ink)" }}>Google Analytics</strong> to see which
+                  pages people visit, what device they&apos;re on, and roughly where they&apos;re from.
+                  Google sets its own cookies and uses that data per its terms. Greg doesn&apos;t sell or
+                  share your info with anyone else. Full details in the{" "}
                   <Link
                     href="/privacy"
                     style={{ color: "var(--brand)", fontWeight: 600, textDecoration: "none" }}

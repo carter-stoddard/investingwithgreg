@@ -27,9 +27,9 @@ function normalizeHandle(h: string): string {
 }
 
 const tierLabel: Record<string, string> = {
-  "30": "$30 Portfolio Drop",
-  "60": "$60 Insider Access",
-  "120": "$120 1:1 Deep Dive",
+  "60": "$60 Portfolio Drop",
+  "90": "$90 Insider Access",
+  "150": "$150 1:1 Deep Dive",
 };
 
 export async function POST(req: Request) {

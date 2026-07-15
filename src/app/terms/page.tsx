@@ -37,9 +37,9 @@ const sections: LegalSection[] = [
       <>
         <p>The Site offers three tiers of educational access:</p>
         <ul>
-          <li><strong>Portfolio Drop ($30):</strong> a one-time delivery of Greg&apos;s current holdings and position sizes, plus answers to a few quick questions.</li>
-          <li><strong>Insider Access ($60):</strong> everything in Portfolio Drop, plus Greg&apos;s watchlist and four weeks of Q&amp;A access.</li>
-          <li><strong>1:1 Deep Dive ($120):</strong> everything in Insider Access, plus a 30-minute one-on-one call with Greg.</li>
+          <li><strong>Portfolio Drop ($60):</strong> a one-time delivery of Greg&apos;s current holdings and position sizes, plus answers to a few quick questions.</li>
+          <li><strong>Insider Access ($90):</strong> everything in Portfolio Drop, plus Greg&apos;s watchlist and four weeks of Q&amp;A access.</li>
+          <li><strong>1:1 Deep Dive ($150):</strong> everything in Insider Access, plus a 30-minute one-on-one call with Greg.</li>
         </ul>
         <p>
           Greg may update the contents of each tier at any time. Pricing and features in effect at the
